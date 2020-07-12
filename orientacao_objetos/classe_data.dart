@@ -3,21 +3,17 @@ class Data {
   int mes;
   int ano;
 
+  Data([this.dia = 1, this.mes = 1, this.ano = 1970]);
+
   String toString() {
     return "$dia/$mes/$ano";
   }
 }
 
 main() {
-  var dataAniversario = new Data();
-  dataAniversario.dia = 17;
-  dataAniversario.mes = 6;
-  dataAniversario.ano = 1992;
+  var dataAniversario = new Data(17, 6, 1992);
   print(dataAniversario);
 
-  Data dataCompra = Data();
-  dataCompra.dia = 12;
-  dataCompra.mes = 7;
-  dataCompra.ano = 2020;
+  Data dataCompra = Data(12, 7, 2020);
   print(dataCompra);
 }
