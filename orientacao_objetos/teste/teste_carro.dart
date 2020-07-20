@@ -6,7 +6,7 @@ main() {
     carro.acelerar();
     print(carro);
   }
-  print('Chegou na velocidade máxima');
+  print('Chegou na velocidade máxima de ${carro.velocidadeAtual}m/s');
 
   bool estaParado = false;
   while (!estaParado) {
@@ -15,5 +15,5 @@ main() {
     print(carro);
   }
 
-  print('O carro parou');
+  print('O carro parou: ${carro.velocidadeAtual}m/s');
 }

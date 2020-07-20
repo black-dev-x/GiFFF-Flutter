@@ -1,27 +1,35 @@
 class Carro {
-  int velocidadeMaxima;
-  int velocidadeAtual = 0;
-  int taxaAceleracao = 5;
+  final int velocidadeMaxima;
+  int _velocidadeAtual = 0;
+  static const taxaAceleracao = 5;
 
-  Carro(this.velocidadeMaxima);
+  Carro([this.velocidadeMaxima = 200]);
+
+  int get velocidadeAtual {
+    return this._velocidadeAtual;
+  }
+
+  void set velocidadeAtual(novaVelocidade) {
+    this._velocidadeAtual = novaVelocidade;
+  }
 
   int acelerar() {
-    var novaVelocidade = velocidadeAtual + taxaAceleracao;
-    velocidadeAtual = novaVelocidade > velocidadeMaxima ? velocidadeMaxima : novaVelocidade;
-    return velocidadeAtual;
+    var novaVelocidade = _velocidadeAtual + taxaAceleracao;
+    _velocidadeAtual = novaVelocidade > velocidadeMaxima ? velocidadeMaxima : novaVelocidade;
+    return _velocidadeAtual;
   }
 
   int frear() {
-    var novaVelocidade = velocidadeAtual - taxaAceleracao;
-    velocidadeAtual = novaVelocidade < 0 ? 0 : novaVelocidade;
-    return velocidadeAtual;
+    var novaVelocidade = _velocidadeAtual - taxaAceleracao;
+    _velocidadeAtual = novaVelocidade < 0 ? 0 : novaVelocidade;
+    return _velocidadeAtual;
   }
 
   bool estaNoLimite() {
-    return velocidadeAtual == velocidadeMaxima;
+    return _velocidadeAtual == velocidadeMaxima;
   }
 
   String toString() {
-    return 'O carro esta andando a $velocidadeAtual de $velocidadeMaxima';
+    return 'O carro esta andando a ${_velocidadeAtual}m/s de ${velocidadeMaxima}m/s';
   }
 }
