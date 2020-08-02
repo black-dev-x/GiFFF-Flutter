@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_perguntas/questao.dart';
+import 'package:projeto_perguntas/resposta.dart';
 
 main() {
   runApp(PerguntaApp());
@@ -8,12 +9,28 @@ main() {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _indicePerguntaAtual = 0;
-  var _listaDePerguntas = ['Qual é a sua cor favorita', 'Qual é o seu animal favorito'];
+
+  final perguntas = [
+    {
+      'texto': 'Qual sua cor favorita',
+      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+    },
+    {
+      'texto': 'Qual seu animal favorito',
+      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    },
+    {
+      'texto': 'Qual o seu instrutor favorito',
+      'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+    },
+  ];
 
   void _responder() {
     setState(() {
       _indicePerguntaAtual++;
-      if (_indicePerguntaAtual >= _listaDePerguntas.length) _indicePerguntaAtual = 0;
+      if (_indicePerguntaAtual == perguntas.length) {
+        _indicePerguntaAtual = 0;
+      }
     });
   }
 
@@ -23,19 +40,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
     );
 
     var body = Column(children: [
-      Questao(_listaDePerguntas[_indicePerguntaAtual]),
-      RaisedButton(
-        child: Text('Resposta 1'),
-        onPressed: () => _responder(),
-      ),
-      RaisedButton(
-        child: Text('Resposta 2'),
-        onPressed: _responder,
-      ),
-      RaisedButton(
-        child: Text('Resposta 3'),
-        onPressed: _responder,
-      ),
+      Questao(perguntas[_indicePerguntaAtual]['texto']),
+      Resposta('Resposta 1', _responder),
+      Resposta('Resposta 2', _responder),
+      Resposta('Resposta 3', _responder),
     ]);
 
     var home = Scaffold(
