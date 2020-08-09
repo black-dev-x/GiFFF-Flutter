@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projeto_perguntas/questao.dart';
-import 'package:projeto_perguntas/resposta.dart';
+import 'questionario.dart';
+import 'resultado.dart';
 
 main() {
   runApp(PerguntaApp());
@@ -41,19 +41,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
     var appBar = AppBar(
       title: Text('Teste'),
     );
-
-    List<String> respostas = fimPerguntas ? null : _perguntas[_indicePerguntaAtual]['respostas'];
-    var body = fimPerguntas
-        ? Center(
-            child: Text(
-              'Parabéns',
-              style: TextStyle(fontSize: 28),
-            ),
-          )
-        : Column(children: [
-            Questao(_perguntas[_indicePerguntaAtual]['texto']),
-            ...respostas.map((texto) => Resposta(texto, _responder)).toList(),
-          ]);
+    var body = fimPerguntas ? Resultado() : Questionario(_perguntas, _responder, _indicePerguntaAtual);
 
     var home = Scaffold(
       appBar: appBar,
