@@ -10,7 +10,7 @@ main() {
 class _PerguntaAppState extends State<PerguntaApp> {
   var _indicePerguntaAtual = 0;
 
-  final perguntas = [
+  final _perguntas = const [
     {
       'texto': 'Qual sua cor favorita',
       'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
@@ -25,13 +25,16 @@ class _PerguntaAppState extends State<PerguntaApp> {
     },
   ];
 
+  bool get fimPerguntas {
+    return _indicePerguntaAtual >= _perguntas.length;
+  }
+
   void _responder() {
-    setState(() {
-      _indicePerguntaAtual++;
-      if (_indicePerguntaAtual == perguntas.length) {
-        _indicePerguntaAtual = 0;
-      }
-    });
+    if (!fimPerguntas) {
+      setState(() {
+        _indicePerguntaAtual++;
+      });
+    }
   }
 
   Widget build(BuildContext context) {
@@ -39,12 +42,18 @@ class _PerguntaAppState extends State<PerguntaApp> {
       title: Text('Teste'),
     );
 
-    var body = Column(children: [
-      Questao(perguntas[_indicePerguntaAtual]['texto']),
-      Resposta('Resposta 1', _responder),
-      Resposta('Resposta 2', _responder),
-      Resposta('Resposta 3', _responder),
-    ]);
+    List<String> respostas = fimPerguntas ? null : _perguntas[_indicePerguntaAtual]['respostas'];
+    var body = fimPerguntas
+        ? Center(
+            child: Text(
+              'Parabéns',
+              style: TextStyle(fontSize: 28),
+            ),
+          )
+        : Column(children: [
+            Questao(_perguntas[_indicePerguntaAtual]['texto']),
+            ...respostas.map((texto) => Resposta(texto, _responder)).toList(),
+          ]);
 
     var home = Scaffold(
       appBar: appBar,
