@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 class Resultado extends StatelessWidget {
   final int pontuacao;
-  void Function() reiniciarQuestionario;
+  final void Function() reiniciarQuestionario;
 
   Resultado(this.pontuacao, this.reiniciarQuestionario);
 
