@@ -1,4 +1,6 @@
 import 'package:expenses_manager/expenses/expense.dart';
+import 'package:expenses_manager/expenses/expenses_graph.dart';
+import 'package:expenses_manager/expenses/expenses_list.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesPage extends StatelessWidget {
@@ -13,15 +15,8 @@ class ExpensesPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Container(
-          child: Card(
-            color: Colors.blue,
-            child: Text('Gráfico'),
-          ),
-        ),
-        Card(
-          child: Text('Lista de Transações'),
-        )
+        ExpensesGraph(),
+        ExpensesList(_expensesList),
       ],
     );
   }
