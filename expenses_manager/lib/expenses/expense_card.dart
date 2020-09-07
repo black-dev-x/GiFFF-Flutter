@@ -24,7 +24,7 @@ class ExpenseCard extends StatelessWidget {
             ),
             padding: EdgeInsets.all(10),
             child: Text(
-              'R\$ ${_expense.value.toStringAsFixed(2)}',
+              '\$ ${_expense.value.toStringAsFixed(2)}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
