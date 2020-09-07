@@ -1,5 +1,6 @@
 import 'package:expenses_manager/expenses/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ExpenseCard extends StatelessWidget {
   final Expense _expense;
@@ -42,7 +43,7 @@ class ExpenseCard extends StatelessWidget {
                 ),
               ),
               Text(
-                _expense.date.toString(),
+                DateFormat('d MMM y').format(_expense.date),
                 style: TextStyle(
                   color: Colors.grey[700],
                 ),
