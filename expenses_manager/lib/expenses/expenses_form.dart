@@ -28,7 +28,9 @@ class ExpensesForm extends StatelessWidget {
                 FlatButton(
                   child: Text('Register Expense'),
                   onPressed: () {
-                    addExpense(titleController.text, double.parse(valueController.text));
+                    final title = titleController.text;
+                    final value = double.tryParse(valueController.text) ?? 0;
+                    addExpense(title, value);
                   },
                   textColor: Colors.purple,
                 ),
