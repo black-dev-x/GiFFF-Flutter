@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class ExpensesForm extends StatelessWidget {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
+  final void Function(String, double) addExpense;
+
+  ExpensesForm(this.addExpense);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,7 @@ class ExpensesForm extends StatelessWidget {
                 FlatButton(
                   child: Text('Register Expense'),
                   onPressed: () {
-                    print(titleController.text);
-                    print(valueController.text);
+                    addExpense(titleController.text, double.parse(valueController.text));
                   },
                   textColor: Colors.purple,
                 ),
